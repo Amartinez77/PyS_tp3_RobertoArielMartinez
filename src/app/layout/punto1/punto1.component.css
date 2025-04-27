@@ -1,0 +1,29 @@
+/* Slider Styles */
+.carousel-container {
+  max-height: 75vh;
+  overflow: hidden;
+}
+
+.slider-image {
+  object-fit: cover;
+  height: 75vh;
+  filter: brightness(0.85);
+}
+
+.caption-style {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  bottom: 20%;
+  left: 10%;
+  right: 10%;
+}
+
+.caption-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.caption-description {
+  font-size: 1.1rem;
+}
