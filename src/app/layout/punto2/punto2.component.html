@@ -1,63 +1,70 @@
-<main class="container">
-  <!-- Productos -->
-  <div class="row">
-    @for (producto of productos; track producto.id) {
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img [src]="producto.imagen" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">{{ producto.nombre }}</h5>
-          <p class="card-text">${{ producto.precio }}</p>
-          <button (click)="agregarAlCarrito(producto)" class="btn btn-primary">
-            Agregar al carrito
-          </button>
-        </div>
-      </div>
-    </div>
-    }
-  </div>
-
-  <!-- Botón flotante del carrito - Versión mejorada -->
-  <button class="btn btn-primary position-fixed end-0 m-4 rounded-circle p-3 carrito-btn" data-bs-toggle="modal"
-    data-bs-target="#modalCarrito" style="width: 60px; height: 60px;">
-    <i class="bi bi-cart-fill fs-4"></i>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-      {{ carrito.length }}
-    </span>
-  </button>
-
-  <!-- Modal del carrito -->
-  <div class="modal fade" id="modalCarrito" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title">Tu Carrito</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          @if (carrito.length === 0) {
-          <p>El carrito está vacío</p>
-          } @else {
-          @for (item of carrito; track item.id) {
-          <div class="d-flex justify-content-between mb-2">
-            <span>{{ item.nombre }}</span>
-            <span>${{ item.precio }}</span>
-            <span><button (click)="eliminarDelCarrito(item.id)">-</button></span>
-          </div>
-          }
-          <hr>
-          <div class="d-flex justify-content-between fw-bold">
-            <span>TOTAL:</span>
-            <span>${{ total }}</span>
-          </div>
-          }
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
-          <button class="btn btn-primary">Finalizar compra</button>
-          <button class="btn btn-danger" (click)="vaciarCarrito()">Vaciar carrito</button>
-        </div>
+<!-- Productos -->
+<div class="row">
+  @for (producto of productos; track producto.id) {
+  <div class="col-md-4 mb-4 col-xs-6 col-sm-6">
+    <div class="card h-100">
+      <img [src]="producto.imagen" class="card-img-top" alt="{{ producto.nombre }}"
+        style="height: 200px; object-fit: contain;">
+      <div class="card-body">
+        <h4 class="card-title">{{ producto.nombre }}</h4>
+        <h5 class="card-subtitle mb-2 mt-2 text-muted">{{ producto.descripcion }}</h5>
+        <p class="card-text">${{ producto.precio }}</p>
+        <button (click)="agregarAlCarrito(producto)" class="btn btn-primary">
+          Agregar al carrito
+        </button>
       </div>
     </div>
   </div>
-</main>
+  }
+</div>
+
+<!-- Botón flotante del carrito - Versión mejorada -->
+<button class="btn btn-primary position-fixed end-0 m-4 rounded-circle p-3 carrito-btn" data-bs-toggle="modal"
+  data-bs-target="#modalCarrito" style="width: 60px; height: 60px;">
+  <i class="bi bi-cart-fill fs-4"></i>
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{ carrito.length }}
+  </span>
+</button>
+
+<!-- Modal del carrito -->
+<div class="modal fade" id="modalCarrito" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Tu Carrito</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-between mb-2">
+          <span class="fw-bold">Producto</span>
+          <span class="fw-bold">Precio</span>
+          <span class="fw-bold">Cantidad</span>
+          <span class="fw-bold">Eliminar</span>
+        </div>
+        @if (carrito.length === 0) {
+        <p>El carrito está vacío</p>
+        } @else {
+        @for (item of carrito; track item.id) {
+        <div class="d-flex justify-content-between mb-2">
+          <span>{{ item.nombre }}</span>
+          <span>${{ item.precio }}</span>
+          <span>cantidad {{item.cantidad}}</span>
+          <span><button (click)="eliminarDelCarrito(item.id)" class="btn btn-danger">-</button></span>
+        </div>
+        }
+        <hr>
+        <div class="d-flex justify-content-between fw-bold">
+          <span>TOTAL:</span>
+          <span>${{ total }}</span>
+        </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
+        <button class="btn btn-primary">Finalizar compra</button>
+        <button class="btn btn-danger" (click)="vaciarCarrito()">Vaciar carrito</button>
+      </div>
+    </div>
+  </div>
+</div>
