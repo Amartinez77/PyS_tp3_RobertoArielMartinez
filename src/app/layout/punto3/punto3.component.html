@@ -1,1 +1,18 @@
-<p>punto3 works!</p>
+<p>Bienvenidos al juego del Ahorcado</p>
+
+<p>Intentos restantes: <span>{{ intentos }}</span></p>
+
+<div>
+
+  @for (letra of letras; track letra) {
+  <button type="button" (click)="letraIngresada(letra)"
+    [disabled]="letrasAdivinadas.includes(letra) || intentos <= 0 || verificarGanador()">
+    {{ letra }}
+  </button>
+  }
+
+</div>
+
+<p>{{ obtenerPalabraOculta() }}</p>
+
+<p>{{ mensaje }}</p>
