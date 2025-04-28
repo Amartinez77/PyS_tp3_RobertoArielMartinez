@@ -1,0 +1,35 @@
+/* Estilo para el botón flotante */
+.btn-flotante {
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-flotante:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste para el badge de cantidad */
+.badge {
+  font-size: 0.7rem;
+}
+
+/* Estilos para el botón del carrito */
+.carrito-btn {
+  bottom: 80px; /* Default para móviles */
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.carrito-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste para pantallas grandes */
+@media (min-width: 992px) {
+  .carrito-btn {
+    bottom: 120px; /* Más arriba en desktop */
+  }
+}

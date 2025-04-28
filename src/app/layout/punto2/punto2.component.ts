@@ -54,4 +54,30 @@ export class Punto2Component {
     },
   ]
 
+  carrito: any[] = [];
+  total: number = 0;
+
+  //funcionalidad del carrito
+
+  agregarAlCarrito(producto: any) {
+    if (!this.carrito.some(item => item.id === producto.id)) {
+      this.carrito.push(producto);
+      this.total += producto.precio;
+      console.log(this.carrito)
+    }
+  }
+  
+  eliminarDelCarrito(id: number) {
+    const producto = this.carrito.find(item => item.id === id);
+    if (producto) { 
+      this.total -= producto.precio;
+      this.carrito = this.carrito.filter(item => item.id != id);
+    }
+  }
+  
+  vaciarCarrito() {
+    this.carrito = [];
+    this.total = 0;
+  }
+
 }
