@@ -1,18 +1,33 @@
-<p>Bienvenidos al juego del Ahorcado</p>
+<h1 class="text-center my-4">Bienvenidos al juego del Ahorcado</h1>
 
-<p>Intentos restantes: <span>{{ intentos }}</span></p>
+<div class="d-flex flex-row justify-content-center align-items-center mb-4">
+  <!--columna imagen-->
+  <div class="col-6 text-center">
+    <img [src]="cargarImagen()" alt="imagen del juego ahorcado" class="img-fluid ahorcado-img" />
+  </div>
 
-<div>
-
-  @for (letra of letras; track letra) {
-  <button type="button" (click)="letraIngresada(letra)"
-    [disabled]="letrasAdivinadas.includes(letra) || intentos <= 0 || verificarGanador()">
-    {{ letra }}
-  </button>
-  }
-
+  <!--columna intentos-->
+  <div class="col-6 text-center">
+    <h3>Intentos restantes: <span class="badge bg-danger">{{ intentos }}</span></h3>
+    <h4 class="palabra-oculta mt-3">{{ obtenerPalabraOculta() }}</h4>
+  </div>
 </div>
 
-<p>{{ obtenerPalabraOculta() }}</p>
+<!--teclado-->
+<div class="row justify-content-center">
+  <div class="col-12 text-center">
+    @for (letra of letras; track letra) {
+    <button type="button" (click)="letraIngresada(letra)" class="btn btn-success m-2"
+      [disabled]="letrasAdivinadas.includes(letra) || intentos <= 0 || verificarGanador()">
+      {{ letra }}
+    </button>
+    }
 
-<p>{{ mensaje }}</p>
+  </div>
+</div>
+<!--mensaje final-->
+<div class="row justify-content-center mt-3">
+  <div class="col-auto text-center">
+    <p class="fs-5">{{ mensaje }}</p>
+  </div>
+</div>

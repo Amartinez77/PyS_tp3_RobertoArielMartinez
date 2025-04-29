@@ -8,16 +8,17 @@ import { Component } from '@angular/core';
 })
 export class Punto3Component {
 
-  palabras: string[] = ['perro', 'asado', 'raton', 'elefante', 'pizza', 'tigre', 'martillo', 'pajaro', 'mesa', 'caballo'];
+  palabras: string[] = ['PERRO', 'ASADO', 'RATON', 'ELEFANTE', 'PIZZA', 'TIGRE', 'MARTILLO', 'PAJARO', 'MESA', 'CABALLO'];
   letras: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
   letrasAdivinadas: string[] = [];
-  intentos: number = 5;
+  intentos: number = 6;
   palabraAleatoria: string = this.obtenerPalabraAleatoria(); //palabra aleatoria inicial
   mensaje: string = "";
   
   //funcion que elije una palabra aleatoria de la lista
   obtenerPalabraAleatoria() {
     return this.palabras[Math.floor(Math.random() * this.palabras.length)];
+    
   }
 
   //funcion para capturar la letra del boton
@@ -33,7 +34,9 @@ export class Punto3Component {
 
 
   //agregar letra a la lista de letras adivinadas
-agregarLetra(letra: string) {
+  agregarLetra(letra: string) {
+    console.log(letra);
+    console.log(this.palabraAleatoria);
   if (this.letrasAdivinadas.includes(letra)) {
     this.mensaje = "Ya has adivinado esta letra";
   } else {
@@ -44,7 +47,9 @@ agregarLetra(letra: string) {
     } else {
       this.mensaje = "¡Letra correcta!";
     }
-  }
+    }
+    console.log(this.mensaje);
+    console.log(this.letrasAdivinadas);
 }
 
 
@@ -83,7 +88,23 @@ agregarLetra(letra: string) {
     }
   }
   return resultado.trim();
-}
+  }
+  
+  // funcion para cargar las imagenes
+  cargarImagen(): string{
+    switch(this.intentos) {
+      case 6: return 'assets/images/base.png';
+      case 5: return 'assets/images/01.png'; // imagen inicial
+      case 4: return 'assets/images/02.png';
+      case 3: return 'assets/images/03.png';
+      case 2: return 'assets/images/04.png';
+      case 1: return 'assets/images/05.png';
+      case 0: return 'assets/images/06.png'; // imagen final
+      default: return 'assets/images/00.png'; // imagen inicial
+    }
+
+  }
+  
 
 
 }
