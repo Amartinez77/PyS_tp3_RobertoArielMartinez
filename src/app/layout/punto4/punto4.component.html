@@ -1,1 +1,49 @@
-<p>punto4 works!</p>
+<h2>Venta de pasajes</h2>
+
+<p>Ingrese los datos solicitados:</p>
+
+<form>
+  <div class="mb-3">
+    <label for="dni" class="form-label">DNI:</label>
+    <input type="text" class="form-control" [(ngModel)]="boleto.dni" name="dni" required>
+  </div>
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre:</label>
+    <input type="text" class="form-control" [(ngModel)]="boleto.nombre" name="nombre" required>
+  </div>
+  <div class="mb-3">
+    <label for="apellido" class="form-label">Apellido:</label>
+    <input type="text" class="form-control" [(ngModel)]="boleto.nombre" name="apellido" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" class="form-control" [(ngModel)]="boleto.email" name="email" required>
+  </div>
+
+  <div>
+    <label>Precio base:</label>
+    <input type="number" [(ngModel)]="precioBase" name="precioBase" (change)="actualizarPrecio()" /><br />
+  </div>
+
+  <div class="input-group mb-3">
+    <label class="input-group-text" for="categoriaTurista">Opciones</label>
+    <select class="form-select" [(ngModel)]="boleto.categoriaTurista" name="categoriaTurista" required>
+      <option selected>Seleccione...</option>
+      <option value="1">Menor</option>
+      <option value="2">Adulto</option>
+      <option value="3">Jubilado</option>
+    </select>
+  </div>
+
+  <!-- Mostrar precio final solo si hay precio y categoría -->
+  <div *ngIf="boleto.categoriaTurista && precioBase">
+    <label>Precio con descuento:</label>
+    <strong>{{ precioConDescuento | currency:'ARS':'symbol' }}</strong>
+  </div>
+
+  <div>
+    <button class="btn btn-success">Registrar venta</button>
+  </div>
+
+
+</form>
