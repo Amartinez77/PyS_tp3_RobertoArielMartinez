@@ -112,4 +112,15 @@ export class Punto2Component {
     this.total = 0;
   }
 
+  //finalizar compra
+  finalizarCompra(): void {
+  if (this.carrito.length === 0) {
+    alert('El carrito ya está vacío.');
+    return;
+  }
+
+  alert('¡Gracias por su compra!');
+  this.vaciarCarrito();
+}
+
 }

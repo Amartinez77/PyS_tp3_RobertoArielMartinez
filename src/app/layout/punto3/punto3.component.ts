@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-punto3',
@@ -27,8 +28,10 @@ export class Punto3Component {
   
   if (this.verificarGanador()) {
     this.mensaje = "¡Felicidades! Has adivinado la palabra: " + this.palabraAleatoria;
+    this.mostrarModalResultado();
   } else if (this.verificarIntentos()) {
-    // Ya pusiste mensaje en verificarIntentos, no hace falta más
+    this.mostrarModalResultado();
+    
   }
 }
 
@@ -104,6 +107,27 @@ export class Punto3Component {
     }
 
   }
+
+  //funcion que muestra el modal de resultado
+  mostrarModalResultado() {
+  const modalElement = document.getElementById('modalResultado');
+  if (modalElement) {
+    const modal = new (window as any).bootstrap.Modal(modalElement);
+    modal.show();
+
+    modalElement.addEventListener('hidden.bs.modal', () => {
+      this.reiniciarJuego();
+    }, { once: true }); // "once" para evitar múltiples listeners
+  }
+  }
+  
+  //funcion que reinicia el juego
+  reiniciarJuego() {
+  this.intentos = 6;
+  this.palabraAleatoria = this.obtenerPalabraAleatoria();
+  this.letrasAdivinadas = [];
+  this.mensaje = '';
+}
   
 
 

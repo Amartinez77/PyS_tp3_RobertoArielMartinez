@@ -36,21 +36,36 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <div class="d-flex justify-content-between mb-2">
+        <!-- <div class="d-flex justify-content-between mb-2">
           <span class="fw-bold">Producto</span>
           <span class="fw-bold">Precio</span>
           <span class="fw-bold">Cantidad</span>
           <span class="fw-bold">Eliminar</span>
-        </div>
+        </div> -->
         @if (carrito.length === 0) {
         <p>El carrito está vacío</p>
         } @else {
+        <div class="row fw-bold border-bottom pb-2 mb-2">
+          <div class="col-4">Producto</div>
+          <div class="col-2 text-end">Precio</div>
+          <div class="col-3 text-center">Cantidad</div>
+          <div class="col-3 text-end">Eliminar</div>
+        </div>
+
         @for (item of carrito; track item.id) {
-        <div class="d-flex justify-content-between mb-2">
+        <!-- <div class="d-flex justify-content-between mb-2">
           <span>{{ item.nombre }}</span>
           <span>${{ item.precio }}</span>
           <span>cantidad {{item.cantidad}}</span>
           <span><button (click)="eliminarDelCarrito(item.id)" class="btn btn-danger">-</button></span>
+        </div> -->
+        <div class="row mb-2">
+          <div class="col-4">{{ item.nombre }}</div>
+          <div class="col-2 text-end">${{ item.precio }}</div>
+          <div class="col-3 text-center">x{{ item.cantidad }}</div>
+          <div class="col-3 text-end">
+            <button class="btn btn-sm btn-danger" (click)="eliminarDelCarrito(item.id)">-</button>
+          </div>
         </div>
         }
         <hr>
@@ -62,7 +77,9 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
-        <button class="btn btn-primary">Finalizar compra</button>
+        <!--<button class="btn btn-primary">Finalizar compra</button>-->
+        <button class="btn btn-primary" (click)="finalizarCompra()">Finalizar compra</button>
+
         <button class="btn btn-danger" (click)="vaciarCarrito()">Vaciar carrito</button>
       </div>
     </div>
