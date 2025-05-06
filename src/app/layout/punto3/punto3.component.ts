@@ -9,7 +9,7 @@ import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 })
 export class Punto3Component {
 
-  palabras: string[] = ['PERRO', 'ASADO', 'RATON', 'ELEFANTE', 'PIZZA', 'TIGRE', 'MARTILLO', 'PAJARO', 'MESA', 'CABALLO'];
+  palabras: string[] = ['PERRO', 'MARIPOSA', 'RATON', 'ELEFANTE', 'ABEJORRO', 'TIGRE', 'BALLENA', 'LORO', 'HIPOPOTAMO', 'CABALLO'];
   letras: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
   letrasAdivinadas: string[] = [];
   intentos: number = 6;

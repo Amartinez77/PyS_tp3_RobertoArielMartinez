@@ -130,8 +130,9 @@ export class Punto4Component implements OnInit, OnDestroy {
 
   resumenTotalVentas: number = 0;
   resumenTotalRecaudado: number = 0;
-  
+  boletosFiltrados: Boleto[] = [];
   actualizarResumen(): void {
+    
     console.log(this.categoriaSeleccionada);
     const boletos = this.boletoService.obtenerBoletos();
     console.log(boletos);
@@ -142,7 +143,9 @@ export class Punto4Component implements OnInit, OnDestroy {
       ? boletos
       : boletos.filter(b => b.categoriaTurista === this.categoriaSeleccionada);
 
+    this.boletosFiltrados = filtrados; // Actualizar el array de boletos filtrados
     this.resumenTotalVentas = filtrados.length;
+    console.log('listado de boletos por categoria:', filtrados);
     this.resumenTotalRecaudado = filtrados.reduce((suma, b) => suma + b.precio, 0);
 }
 
@@ -154,4 +157,11 @@ export class Punto4Component implements OnInit, OnDestroy {
 
   }
 
+  // objeto map 
+  categoriasMap: { [key: number]: string } = {
+    0: 'Todos',
+    1: 'Menor',
+    2: 'Adulto',
+    3: 'Jubilado'
+  }
 }
