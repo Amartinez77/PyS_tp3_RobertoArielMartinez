@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,8 @@ export class GeoService {
     // peticion por get a esa url de un apirest
     const httpOptions = {
       headers: new HttpHeaders({
-        'x-rapidapi-key': '0d67c15fc8mshf05bd9e4f6655bfp1a0bd6jsn30b062fd0d5c',
-        'x-rapidapi-host': 'country-state-city-search-rest-api.p.rapidapi.com',
+        'x-rapidapi-key': environment.rapidApiKey,
+        'x-rapidapi-host': environment.rapidApiHost,
         
       })
     };
@@ -24,8 +26,8 @@ export class GeoService {
   public getStatesByCountryCode(countryCode: string) { 
     const httpOptions = {
       headers: new HttpHeaders({
-        'x-rapidapi-key': '0d67c15fc8mshf05bd9e4f6655bfp1a0bd6jsn30b062fd0d5c',
-        'x-rapidapi-host': 'country-state-city-search-rest-api.p.rapidapi.com',
+        'x-rapidapi-key': environment.rapidApiKey,
+        'x-rapidapi-host': environment.rapidApiHost,
         
       })
     };
