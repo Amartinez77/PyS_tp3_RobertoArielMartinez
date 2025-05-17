@@ -1,0 +1,30 @@
+<p>geo works!</p>
+
+<div class="container mt-4">
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Bandera</th>
+          <th>Nombre</th>
+          <th>Código ISO</th>
+          <th>Código Telefónico</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of countries">
+          <td>{{item.flag}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.isoCode}}</td>
+          <td>{{item.phonecode}}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="verProvincias(item.isoCode)">
+              <i class="bi bi-map"></i> Ver Provincias
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

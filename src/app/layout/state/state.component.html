@@ -1,0 +1,24 @@
+<p>state works!</p>
+<!-- state.component.html -->
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Código</th>
+        <th scope="col">País</th>
+        <th scope="col">Coordenadas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let state of states">
+        <td>{{state.id}}</td>
+        <td>{{state.name}}</td>
+        <td>{{state.isoCode}}</td>
+        <td>{{state.countryCode}}</td>
+        <td>{{state.latitude}}, {{state.longitude}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
